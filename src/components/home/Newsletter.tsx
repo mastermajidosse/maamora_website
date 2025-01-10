@@ -37,7 +37,7 @@ export function Newsletter() {
   };
 
   return (
-    <section className="pb-24 pt-24 bg-[#232f3e]">
+    <section className="mt-24 pb-24 pt-24 bg-[#232f3e]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Subscribe to Our Newsletter</h2>

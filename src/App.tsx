@@ -26,26 +26,18 @@ import { VendorDashboardPage } from './pages/VendorDashboardPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
-import { ScrollToTop } from './components/ScrollToTop';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState('');
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
-
   return (
     <AuthProvider>
       <CartProvider>
         <Router>
-          <ScrollToTop />
           <div className="min-h-screen bg-white flex flex-col">
             <Navbar 
-              onSearch={handleSearch}
-              searchQuery={searchQuery}
-              onResetSearch={() => setSearchQuery('')}
+              onSearch={setSearchQuery} 
               onMenuClick={() => setIsSidebarOpen(true)} 
             />
             

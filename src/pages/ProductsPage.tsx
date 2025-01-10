@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ProductGrid } from '../components/ProductGrid';
 import { FilterSidebar } from '../components/FilterSidebar';
 import { ProductSort } from '../components/ProductSort';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 import { Product } from '../types/product';
 import { useProducts } from '../hooks/useProducts';
 
@@ -16,11 +17,11 @@ export function ProductsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 9;
 
-  const { products, loading, error } = useProducts(selectedCategory, searchQuery);
+  const { filteredProducts, loading, error } = useProducts(selectedCategory, searchQuery);
 
   // Filter and sort products
   const getFilteredAndSortedProducts = () => {
-    return [...products].sort((a, b) => {
+    return [...filteredProducts].sort((a, b) => {
       switch (sortBy) {
         case 'newest':
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();

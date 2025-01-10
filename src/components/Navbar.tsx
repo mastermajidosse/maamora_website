@@ -9,16 +9,15 @@ import { CartDrawer } from './CartDrawer';
 
 interface NavbarProps {
   onSearch: (query: string) => void;
-  searchQuery: string;
-  onResetSearch: () => void;
   onMenuClick: () => void;
 }
 
-export function Navbar({ onSearch, searchQuery, onResetSearch, onMenuClick }: NavbarProps) {
+export function Navbar({ onSearch, onMenuClick }: NavbarProps) {
   const { user, signOut } = useAuth();
   const { state: cartState } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchInput, setSearchInput] = useState('');
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -26,12 +25,6 @@ export function Navbar({ onSearch, searchQuery, onResetSearch, onMenuClick }: Na
 
   const showSearch = location.pathname === '/' || location.pathname === '/products';
 
-  // Reset search when returning to homepage
-  useEffect(() => {
-    if (location.pathname === '/') {
-      onResetSearch();
-    }
-  }, [location.pathname, onResetSearch]);
   useEffect(() => {
     if (user) {
       fetchProfile();
@@ -78,9 +71,9 @@ export function Navbar({ onSearch, searchQuery, onResetSearch, onMenuClick }: Na
   };
 
   const handleSearch = () => {
-    if (searchQuery.trim()) {
-      onSearch(searchQuery);
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    if (searchInput.trim()) {
+      onSearch(searchInput);
+      navigate(`/search?q=${encodeURIComponent(searchInput.trim())}`);
     }
   };
 
@@ -126,8 +119,8 @@ export function Navbar({ onSearch, searchQuery, onResetSearch, onMenuClick }: Na
                   <input
                     type="text"
                     placeholder="Search products..."
-                    value={searchQuery}
-                    onChange={(e) => onSearch(e.target.value)}
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
                     onKeyPress={handleKeyPress}
                     className="w-full pl-4 pr-14 py-2.5 bg-white border border-gray-200 rounded-full focus:outline-none focus:border-[#fb7701] focus:ring-1 focus:ring-[#fb7701] transition-colors"
                   />
@@ -142,7 +135,7 @@ export function Navbar({ onSearch, searchQuery, onResetSearch, onMenuClick }: Na
             )}
 
             <div className="flex items-center gap-4">
-              {user && (
+      
                 <button
                   onClick={() => setShowCart(true)}
                   className="relative p-2 hover:bg-gray-100 rounded-lg text-gray-600 hover:text-gray-900"
@@ -154,7 +147,7 @@ export function Navbar({ onSearch, searchQuery, onResetSearch, onMenuClick }: Na
                     </span>
                   )}
                 </button>
-              )}
+           
 
               {user ? (
                 <div className="relative">

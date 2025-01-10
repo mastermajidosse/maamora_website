@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, Phone, User, Truck, CreditCard, Check } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../lib/supabase';
 import { useCart } from '../contexts/CartContext';
+import { supabase } from '../lib/supabase';
 import { formatPrice } from '../utils/product';
 
 export function CheckoutPage() {
@@ -71,49 +71,17 @@ export function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!user) return;
-
     try {
       setLoading(true);
       
+      // Validate all fields are filled
       const isValid = Object.values(formData).every(value => value.trim() !== '');
       if (!isValid) {
         throw new Error('Please fill in all fields');
       }
 
-      // Create order in database
-      const { data: order, error: orderError } = await supabase
-        .from('orders')
-        .insert({
-          user_id: user.id,
-          status: 'pending',
-          total_amount: cartState.total,
-          shipping_address: {
-            full_name: formData.full_name,
-            phone_number: formData.phone_number,
-            address: formData.address,
-            city: formData.city,
-            country: formData.country
-          }
-        })
-        .select()
-        .single();
-
-      if (orderError) throw orderError;
-
-      // Create order items
-      const orderItems = cartState.items.map(item => ({
-        order_id: order.id,
-        product_id: item.id,
-        quantity: item.quantity,
-        price: item.price * (1 - item.discount / 100)
-      }));
-
-      const { error: itemsError } = await supabase
-        .from('order_items')
-        .insert(orderItems);
-
-      if (itemsError) throw itemsError;
+      // Simulate order creation
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Show confirmation popup
       setShowConfirmation(true);
@@ -126,7 +94,7 @@ export function CheckoutPage() {
       
     } catch (error) {
       console.error('Error processing order:', error);
-      alert('Failed to process your order. Please try again.');
+      alert(error instanceof Error ? error.message : 'Error processing your order');
     } finally {
       setLoading(false);
     }

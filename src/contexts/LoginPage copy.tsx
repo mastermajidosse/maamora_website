@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LogIn, Mail, Lock, Facebook } from 'lucide-react';
+import { LogIn, Mail, Lock, Facebook, Github } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { Provider } from '@supabase/supabase-js';
 
@@ -17,11 +17,24 @@ export function LoginPage() {
     try {
       setError('');
       setLoading(true);
+      
+      // Basic validation
+      if (!email.trim() || !password.trim()) {
+        throw new Error('Please enter both email and password');
+      }
+
       await signIn(email, password);
       navigate('/profile');
-    } catch (err) {
-      setError('Failed to sign in');
-      console.error(err);
+    } catch (err: any) {
+      console.error('Sign in error:', err);
+      // Handle specific error messages
+      if (err.message?.includes('Invalid login credentials')) {
+        setError('Invalid email or password');
+      } else if (err.message?.includes('Email not confirmed')) {
+        setError('Please confirm your email address');
+      } else {
+        setError(err.message || 'Failed to sign in');
+      }
     } finally {
       setLoading(false);
     }
@@ -115,39 +128,6 @@ export function LoginPage() {
               </button>
             </div>
           </form>
-
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <button
-                onClick={() => handleSocialLogin('google')}
-                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-              >
-                <img
-                  className="h-5 w-5"
-                  src="https://www.svgrepo.com/show/475656/google-color.svg"
-                  alt="Google logo"
-                />
-                <span className="ml-2">Google</span>
-              </button>
-
-              <button
-                onClick={() => handleSocialLogin('facebook')}
-                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-              >
-                <Facebook className="h-5 w-5 text-[#1877F2]" />
-                <span className="ml-2">Facebook</span>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>

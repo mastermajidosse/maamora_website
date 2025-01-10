@@ -45,6 +45,15 @@ export function AddProductModal({ isOpen, onClose, onProductAdded }: AddProductM
     e.preventDefault();
     if (!user) return;
 
+    // Validate required fields
+    if (!formData.name || !formData.description || !formData.price || 
+        !formData.category_id || !formData.image_url || !formData.stock) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    const slug = formData.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
     try {
       setLoading(true);
 
@@ -53,7 +62,7 @@ export function AddProductModal({ isOpen, onClose, onProductAdded }: AddProductM
         .insert([
           {
             name: formData.name,
-            slug: formData.name.toLowerCase().replace(/\s+/g, '-'),
+            slug,
             description: formData.description,
             price: parseFloat(formData.price),
             category_id: formData.category_id,
@@ -62,16 +71,17 @@ export function AddProductModal({ isOpen, onClose, onProductAdded }: AddProductM
             author: user.email,
             discount: parseInt(formData.discount),
             rating: 0,
-            reviews_count: 0
+            reviews_count: 0,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
           }
         ])
         .select()
         .single();
 
       if (error) throw error;
-
-      onProductAdded();
-      onClose();
+      
+      // Reset form and close modal
       setFormData({
         name: '',
         description: '',
@@ -81,9 +91,20 @@ export function AddProductModal({ isOpen, onClose, onProductAdded }: AddProductM
         stock: '',
         discount: '0'
       });
+
+      onProductAdded();
+      onClose();
     } catch (error) {
       console.error('Error adding product:', error);
-      alert('Failed to add product. Please try again.');
+      if (error instanceof Error) {
+        if (error.message.includes('duplicate key')) {
+          alert('A product with this name already exists. Please use a different name.');
+        } else {
+          alert('Failed to add product. Please try again.');
+        }
+      } else {
+        alert('Failed to add product. Please try again.');
+      }
     } finally {
       setLoading(false);
     }

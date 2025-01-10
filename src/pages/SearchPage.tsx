@@ -4,37 +4,20 @@ import { ProductGrid } from '../components/ProductGrid';
 import { FilterSidebar } from '../components/FilterSidebar';
 import { ProductSort } from '../components/ProductSort';
 import { useProducts } from '../hooks/useProducts';
+import { sortProducts } from '../utils/product';
+import { categories } from '../data/categories';
 import { Search } from 'lucide-react';
 
 export function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const query = searchParams.get('q') || '';
-  const [selectedCategory, setSelectedCategory] = React.useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = React.useState<Category | 'All'>('All');
   const [sortBy, setSortBy] = React.useState('popular');
   const [searchInput, setSearchInput] = React.useState(query);
   
-  const { products, loading, error } = useProducts(selectedCategory, query);
-
-  // Sort products
-  const sortedProducts = React.useMemo(() => {
-    if (!products) return [];
-    
-    return [...products].sort((a, b) => {
-      switch (sortBy) {
-        case 'newest':
-          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-        case 'price-asc':
-          return a.price - b.price;
-        case 'price-desc':
-          return b.price - a.price;
-        case 'popular':
-          return (b.rating * b.reviews_count) - (a.rating * a.reviews_count);
-        default:
-          return 0;
-      }
-    });
-  }, [products, sortBy]);
+  const { filteredProducts } = useProducts(selectedCategory, query);
+  const sortedProducts = sortProducts(filteredProducts, sortBy);
 
   // Reset search when category changes
   React.useEffect(() => {
@@ -56,7 +39,7 @@ export function SearchPage() {
   };
 
   const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
+    setSelectedCategory(category as Category | 'All');
     setSearchInput('');
     if (category === 'All') {
       navigate('/products');
@@ -101,11 +84,11 @@ export function SearchPage() {
           <div className="flex-1">
             <div className="flex justify-between items-center mb-8">
               <div>
-                <h2 className="text-2xl font-medium text-gray-900">
+                <h2 className="text-2xl font-medium text-gray-900 mb-2">
                   {query ? 'Search Results' : `${selectedCategory} Products`}
                 </h2>
                 {query && (
-                  <p className="text-gray-600 mt-1">
+                  <p className="text-gray-600">
                     {sortedProducts.length} results for "{query}"
                   </p>
                 )}
@@ -113,15 +96,7 @@ export function SearchPage() {
               <ProductSort onChange={setSortBy} />
             </div>
             
-            {loading ? (
-              <div className="text-center py-12">
-                <p className="text-gray-500">Loading products...</p>
-              </div>
-            ) : error ? (
-              <div className="text-center py-12">
-                <p className="text-red-500">{error}</p>
-              </div>
-            ) : sortedProducts.length > 0 ? (
+            {sortedProducts.length > 0 ? (
               <ProductGrid products={sortedProducts} />
             ) : (
               <div className="text-center py-12">

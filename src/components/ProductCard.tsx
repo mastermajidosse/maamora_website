@@ -47,7 +47,7 @@ export function ProductCard({ product, featured = false }: ProductCardProps) {
         </div>
         <div className="p-4">
           <h3 className="text-lg font-medium text-gray-900 mb-1">{product.name}</h3>
-          <p className="text-sm text-gray-500 mb-2">{product.category_id}</p>
+          <p className="text-sm text-gray-500 whitespace-nowrap mb-2">{product.category_id}</p>
           <div className="text-lg font-bold text-gray-900">{formatPrice(discountedPrice)} dhs</div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export function ProductCard({ product, featured = false }: ProductCardProps) {
   }
 
   return (
-    <div className="group cursor-pointer" onClick={handleClick}>
+    <div className="group cursor-pointer !whitespace-nowrap" onClick={handleClick}>
       <div className="aspect-square overflow-hidden bg-gray-100 rounded-lg relative">
         <img
           src={product.image_url}
