@@ -1,0 +1,46 @@
+import { Product } from '../../types/product';
+
+export const beauty: Product[] = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&q=80&w=800',
+    name: 'Maybelline Matte Lipstick',
+    description: 'Long-lasting matte lipstick formula',
+    categoryId: "Beauty",
+    author: "asmae",
+    rating: 4.8,
+    reviews: 145,
+    discount: 15,
+    price: 120,
+    date: new Date().toISOString(),
+    inStock: 10,
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&q=80&w=800',
+    name: 'Luxury Face Serum',
+    description: 'Anti-aging serum with vitamin C and hyaluronic acid',
+    categoryId: "Beauty",
+    author: "asmae",
+    rating: 4.9,
+    reviews: 278,
+    discount: 10,
+    price: 89,
+    date: new Date().toISOString(),
+    inStock: 30,
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800',
+    name: 'Professional Makeup Brush Set',
+    description: '15-piece premium makeup brush collection',
+    categoryId: "Beauty",
+    author: "asmae",
+    rating: 4.7,
+    reviews: 195,
+    discount: 25,
+    price: 149,
+    date: new Date().toISOString(),
+    inStock: 20,
+  }
+];

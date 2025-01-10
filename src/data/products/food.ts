@@ -1,0 +1,46 @@
+import { Product } from '../../types/product';
+
+export const food: Product[] = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=800',
+    name: 'Organic Honey',
+    description: 'Pure raw organic honey from local beekeepers',
+    categoryId: "Food",
+    author: "Chef John",
+    rating: 4.9,
+    reviews: 342,
+    discount: 10,
+    price: 24.99,
+    date: new Date().toISOString(),
+    inStock: 50,
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800',
+    name: 'Artisan Coffee Beans',
+    description: 'Single-origin dark roast coffee beans',
+    categoryId: "Food",
+    author: "Chef John",
+    rating: 4.8,
+    reviews: 567,
+    discount: 15,
+    price: 19.99,
+    date: new Date().toISOString(),
+    inStock: 100,
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1606913084603-3e7702b01627?auto=format&fit=crop&q=80&w=800',
+    name: 'Premium Olive Oil',
+    description: 'Extra virgin olive oil from Mediterranean olives',
+    categoryId: "Food",
+    author: "Chef John",
+    rating: 4.7,
+    reviews: 289,
+    discount: 20,
+    price: 29.99,
+    date: new Date().toISOString(),
+    inStock: 75,
+  }
+];

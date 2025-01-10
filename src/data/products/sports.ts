@@ -1,0 +1,46 @@
+import { Product } from '../../types/product';
+
+export const sports: Product[] = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800',
+    name: 'Premium Yoga Mat',
+    description: 'Non-slip exercise mat with carrying strap',
+    categoryId: "Sports",
+    author: "Alex",
+    rating: 4.7,
+    reviews: 425,
+    discount: 15,
+    price: 69.99,
+    date: new Date().toISOString(),
+    inStock: 30,
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&q=80&w=800',
+    name: 'Smart Fitness Watch',
+    description: 'Advanced activity tracker with heart rate monitoring',
+    categoryId: "Sports",
+    author: "Alex",
+    rating: 4.8,
+    reviews: 560,
+    discount: 20,
+    price: 199.99,
+    date: new Date().toISOString(),
+    inStock: 25,
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?auto=format&fit=crop&q=80&w=800',
+    name: 'Adjustable Dumbbell Set',
+    description: 'Space-saving adjustable weights from 5-52.5 lbs',
+    categoryId: "Sports",
+    author: "Alex",
+    rating: 4.9,
+    reviews: 380,
+    discount: 10,
+    price: 299.99,
+    date: new Date().toISOString(),
+    inStock: 20,
+  }
+];

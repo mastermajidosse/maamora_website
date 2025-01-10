@@ -1,0 +1,46 @@
+import { Product } from '../../types/product';
+
+export const homeDecor: Product[] = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=800',
+    name: 'Modern Floor Lamp',
+    description: 'Contemporary LED floor lamp with adjustable brightness',
+    categoryId: "Home Decor",
+    author: "Sarah",
+    rating: 4.7,
+    reviews: 245,
+    discount: 15,
+    price: 199,
+    date: new Date().toISOString(),
+    inStock: 20,
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=800',
+    name: 'Velvet Accent Chair',
+    description: 'Luxurious velvet armchair with gold-finished legs',
+    categoryId: "Home Decor",
+    author: "Sarah",
+    rating: 4.8,
+    reviews: 189,
+    discount: 20,
+    price: 499,
+    date: new Date().toISOString(),
+    inStock: 15,
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800',
+    name: 'Geometric Wall Mirror',
+    description: 'Modern hexagonal mirror set for wall decoration',
+    categoryId: "Home Decor",
+    author: "Sarah",
+    rating: 4.6,
+    reviews: 156,
+    discount: 10,
+    price: 299,
+    date: new Date().toISOString(),
+    inStock: 25,
+  }
+];
