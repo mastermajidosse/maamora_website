@@ -11,12 +11,15 @@ import {
   Shirt
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { Mycategories } from '../../data/categories';
 
 interface Category {
   id: string;
   name: string;
   slug: string;
 }
+
+// const desiredOrder = ['books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports'];
 
 export function CategoryGrid() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -30,11 +33,19 @@ export function CategoryGrid() {
       const { data, error } = await supabase
         .from('categories')
         .select('*')
-        .not('slug', 'in', '(cars,food)')
-        .order('name');
+        .not('slug', 'in', '(cars,food,gaming-accessories)');
+        // .order('name');
 
       if (error) throw error;
-      setCategories(data || []);
+
+      // Sort fetched categories based on desired order
+      const sortedCategories = data.sort((a, b) => {
+        const indexA = Mycategories.indexOf(a.slug);
+        const indexB = Mycategories.indexOf(b.slug);
+        return indexA - indexB;
+      });
+
+      setCategories(sortedCategories);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }

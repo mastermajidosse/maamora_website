@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { Mycategories } from '../data/categories';
 
 interface Category {
   name: string;
@@ -19,6 +20,8 @@ export function FilterSidebar({ selectedCategory, onCategoryChange }: FilterSide
     fetchCategories();
   }, []);
 
+  // const desiredOrder = ['books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports','food','cars'];
+
   const fetchCategories = async () => {
     try {
       const { data, error } = await supabase
@@ -27,7 +30,15 @@ export function FilterSidebar({ selectedCategory, onCategoryChange }: FilterSide
         .order('name');
 
       if (error) throw error;
-      setCategories(data || []);
+
+      // Sort fetched categories based on desired order
+      const sortedCategories = data.sort((a, b) => {
+        const indexA = Mycategories.indexOf(a.slug);
+        const indexB = Mycategories.indexOf(b.slug);
+        return indexA - indexB;
+      });
+
+      setCategories(sortedCategories);
     } catch (error) {
       console.error('Error fetching categories:', error);
     } finally {

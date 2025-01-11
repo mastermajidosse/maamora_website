@@ -6,38 +6,48 @@ export function SpecialOffers() {
   const offers = [
     {
       id: 1,
-      title: 'Free Delivery',
-      description: 'On orders over $100',
+      title: 'Download App: Weekly Rewards',
+      description: 'Download our app & get a prizes each week',
+      category: '',
       image: 'https://images.unsplash.com/photo-1586880244406-556ebe35f282?auto=format&fit=crop&q=80&w=800',
-      link: '/products'
+      link: 'https://play.google.com/store/apps/details?id=com.otot.maamora',
+      button:'Download Now'
     },
     {
       id: 2,
-      title: 'Flash Sale',
-      description: 'Up to 50% off',
+      title: 'Join a Group & Save on Delivery',
+      description: 'Join a group shopping together for better deals',
+      category: '',
       image: 'https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&q=80&w=800',
-      link: '/products'
+      link: 'https://play.google.com/store/apps/details?id=com.otot.maamora',
+      button:'Download App'
     },
     {
       id: 3,
       title: 'New Arrivals',
       description: 'Latest Products',
+      category: '',
       image: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&q=80&w=800',
-      link: '/products'
+      link: '/products',
+      button:'Shop Now'
     },
     {
       id: 4,
-      title: 'Student Discount',
-      description: 'Extra 10% off',
+      title: 'Books Discount',
+      description: 'Extra 10% off on 3 Books or more',
+      category: 'books',
       image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800',
-      link: '/products'
+      link: '/products',
+      button:'Shop Now'
     },
     {
       id: 5,
       title: 'Elevate Your Game',
       description: 'Gaming Accessories',
+      category: 'gaming-accessories',
       image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800',
-      link: '/products'
+      link: '/products',
+      button:'Shop Now'
     }
   ];
 
@@ -50,6 +60,7 @@ export function SpecialOffers() {
             <Link
               key={offer.id}
               to={offer.link}
+              state={{ selectedCategory: offer.category }}
               className="group relative overflow-hidden rounded-lg aspect-[16/9]"
             >
               <img
@@ -62,7 +73,7 @@ export function SpecialOffers() {
                   <h3 className="text-xl font-bold text-white mb-2">{offer.title}</h3>
                   <p className="text-white/80 mb-4">{offer.description}</p>
                   <div className="flex items-center text-white group-hover:text-[#fb7701] transition-colors">
-                    <span className="font-medium">Shop Now</span>
+                    <span className="font-medium"> {offer.button} </span>
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>

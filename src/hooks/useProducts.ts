@@ -7,10 +7,10 @@ function normalizeArabicText(text: string): string {
   return text
     .trim()
     .toLowerCase()
-    .replace(/[ًٌٍَُِّْ]/g, '') // Remove tashkeel
-    .replace(/[إأآ]/g, 'ا') // Normalize alef
-    .replace(/[ى]/g, 'ي') // Normalize yaa
-    .replace(/[ة]/g, 'ه'); // Normalize taa marbouta
+    .replace(/[ًٌٍَُِّْ]/g, ''); // Remove tashkeel
+    // .replace(/[إأآ]/g, 'ا') // Normalize alef
+    // .replace(/[ى]/g, 'ي') // Normalize yaa
+    // .replace(/[ة]/g, 'ه'); // Normalize taa marbouta
 }
 
 export function useProducts(selectedCategory: string, searchQuery: string = '') {

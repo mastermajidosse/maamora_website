@@ -1,13 +1,6 @@
-export const categories = [
-  'Books',
-  'Electronics',
-  'Fashion',
-  'Home Decor',
-  'Beauty',
-  'Kids',
-  'Sports',
-  'Food',
-  'Cars'
-] as const;
+export const Mycategories = ['books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports','gaming-accessories','food','cars'] as const;
 
-export type Category = typeof categories[number];
+// const desiredOrder = ['books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports'];
+
+
+export type Category = typeof Mycategories[number];
