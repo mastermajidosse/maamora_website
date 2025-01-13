@@ -21,10 +21,10 @@ export function CheckoutPage() {
   });
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+    // if (!user) {
+    //   navigate('/login');
+    //   return;
+    // }
 
     if (cartState.items.length === 0) {
       navigate('/products');

@@ -20,7 +20,7 @@ export function TrendingProducts() {
         .from('products')
         .select('*, categories:category_id(*)')
         .order('reviews_count', { ascending: false })
-        .limit(6);
+        .limit(5);
 
       if (error) throw error;
       setProducts(data || []);
@@ -50,7 +50,7 @@ export function TrendingProducts() {
             <p className="text-gray-500">Loading products...</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

@@ -116,7 +116,7 @@ export function LoginPage() {
             </div>
           </form>
 
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
@@ -146,8 +146,8 @@ export function LoginPage() {
                 <Facebook className="h-5 w-5 text-[#1877F2]" />
                 <span className="ml-2">Facebook</span>
               </button>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
     </div>

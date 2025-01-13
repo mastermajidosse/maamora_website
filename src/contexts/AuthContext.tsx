@@ -44,7 +44,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       password,
     });
-    if (error) throw error;
+    
+    if (error)  {
+      console.log(error);
+      throw error;
+    } 
   };
 
   const signUp = async (email: string, password: string) => {
@@ -52,7 +56,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       email,
       password,
     });
-    if (error) throw error;
+    if (error)  {
+      console.log(error);
+      throw error;
+    } 
   };
 
   const signInWithProvider = async (provider: Provider) => {
