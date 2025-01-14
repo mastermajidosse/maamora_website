@@ -45,7 +45,8 @@ export function ProfilePage() {
             city: data.city || '',
             country: data.country || '',
           });
-        }
+        } 
+
       } catch (error) {
         console.error('Error loading profile:', error);
       } finally {
@@ -77,6 +78,8 @@ export function ProfilePage() {
       setTimeout(() => {
         setShowSuccess(false);
       }, 2000);
+      navigate('/');
+
     } catch (error) {
       console.error('Error updating profile:', error);
     } finally {

@@ -69,7 +69,7 @@ export function RegisterPage() {
 
       setLoading(true);
       await signUp(formData.email, formData.password);
-      navigate('/login');
+      navigate('/');
     } catch (error: any) {
       console.error('Registration error:', error);
       if (error.message?.includes('already registered')) {
