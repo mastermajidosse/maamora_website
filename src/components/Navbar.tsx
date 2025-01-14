@@ -96,10 +96,10 @@ export function Navbar({ onSearch, onMenuClick }: NavbarProps) {
 
   return (
     <>
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
+     <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center h-auto sm:h-16 sm:py-3 sm:py-0 sm:gap-3 sm:gap-0">
+          <div className="flex items-center justify-between">
               <button 
                 onClick={onMenuClick}
                 className="p-2 hover:bg-gray-100 rounded-full"
@@ -107,34 +107,42 @@ export function Navbar({ onSearch, onMenuClick }: NavbarProps) {
                 <Menu className="h-6 w-6 text-gray-600 hover:text-gray-900" />
               </button>
               <Link to="/" className="ml-2 relative">
-                <span className="text-[36px] font-bold text-[#fb7701] font-['Calibri']">
+                <span className="text-xl sm:text-2xl font-bold text-[#fb7701] font-['Calibri']">
                   Maamora
                 </span>
               </Link>
+              <div className="flex items-center gap-4 sm:hidden">
+              <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
+                <ShoppingBag className="h-6 w-6" />
+              </button>
+              <button className="p-2 hover:bg-gray-100 rounded-lg text-gray-600">
+                <User className="h-6 w-6" />
+              </button>
+              </div>
             </div>
             
             {showSearch && (
-              <div className="flex-1 max-w-2xl mx-4">
-                <div className="relative flex items-center">
+             <div className="flex-1 max-w-2xl mx-0 sm:mx-4 mt-3 sm:mt-0">
+            <div className="relative flex items-center">
                   <input
                     type="text"
                     placeholder="Search products..."
                     value={searchInput}
                     onChange={(e) => setSearchInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    className="w-full pl-4 pr-14 py-2.5 bg-white border border-gray-200 rounded-full focus:outline-none focus:border-[#fb7701] focus:ring-1 focus:ring-[#fb7701] transition-colors"
-                  />
+                    className="w-full pl-4 pr-14 py-2 sm:py-2.5 bg-white border border-gray-200 rounded-full focus:outline-none focus:border-[#fb7701] focus:ring-1 focus:ring-[#fb7701] transition-colors"
+              />
                   <button 
                     onClick={handleSearch}
                     className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#fb7701] text-white p-2 rounded-full hover:bg-[#e66901] transition-colors"
-                  >
+              >
                     <Search className="h-5 w-5" />
                   </button>
                 </div>
               </div>
             )}
 
-            <div className="flex items-center gap-4">
+            <div className="hidden sm:flex items-center gap-4">
       
                 <button
                   onClick={() => setShowCart(true)}

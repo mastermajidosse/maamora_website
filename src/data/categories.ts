@@ -1,4 +1,4 @@
-export const Mycategories = ['books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports','gaming-accessories','food','cars'] as const;
+export const Mycategories = ['All','books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports','gaming-accessories','food','cars'] as const;
 
 // const desiredOrder = ['books', 'toys-baby', 'clothes', 'electronics', 'home-decor', 'pets', 'health-beauty', 'sports'];
 

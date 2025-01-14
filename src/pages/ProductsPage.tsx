@@ -57,13 +57,13 @@ export function ProductsPage() {
   }, [location.state]);
 
   return (
-    <div className="min-h-screen bg-white pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex gap-8">
-          <FilterSidebar 
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+    <div className="min-h-screen bg-white pt-32 sm:pt-24">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <FilterSidebar 
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
           
           <div className="flex-1">
             <div className="flex justify-between items-center mb-8">
@@ -95,7 +95,7 @@ export function ProductsPage() {
                 
                 {/* Pagination */}
                 {totalPages > 1 && (
-                  <div className="flex justify-center items-center gap-2 mt-12 mb-24">
+                  <div className="flex flex-wrap justify-center gap-2 sm:gap-1 mt-12 mb-24">
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
@@ -108,7 +108,7 @@ export function ProductsPage() {
                       <button
                         key={number}
                         onClick={() => handlePageChange(number)}
-                        className={`w-10 h-10 rounded-lg ${
+                        className={`w-8 h-8 sm:w-10 sm:h-10 text-sm sm:text-base rounded-lg transition-colors ${
                           currentPage === number
                             ? 'bg-[#fb7701] text-white'
                             : 'hover:bg-gray-100'
