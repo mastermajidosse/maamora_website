@@ -50,11 +50,12 @@ export function ProductsPage() {
   };
 
   // Update selected category when navigating from home page
-  useEffect(() => {
+  useEffect(() => { 
     if (location.state?.selectedCategory) {
       setSelectedCategory(location.state.selectedCategory);
     }
-  }, [location.state]);
+    setCurrentPage(1);  
+  }, [location.state,selectedCategory]);
 
   return (
     <div className="min-h-screen bg-white pt-32 sm:pt-24">

@@ -16,10 +16,11 @@ export function FeaturedProducts() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
+      
       const { data, error } = await supabase
         .from('products')
         .select('*, categories:category_id(*)')
-        .order('rating', { ascending: false })
+        .order('ranking', { ascending: false })
         .limit(5);
 
       if (error) throw error;
