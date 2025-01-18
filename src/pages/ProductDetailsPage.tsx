@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Star, ShoppingCart, Heart, Share2, TruckIcon, ShieldCheck, RotateCcw, X, Facebook, Twitter, Linkedin, Link as LinkIcon } from 'lucide-react';
+import { Star, ShoppingCart, Heart, Share2, TruckIcon, ShieldCheck, RotateCcw, X, Facebook, Twitter, Linkedin, Link as LinkIcon, MessageCircle } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { calculateDiscountedPrice, formatPrice } from '../utils/product';
 import { Product } from '../types/product';
@@ -53,6 +53,10 @@ export function ProductDetailsPage() {
       </div>
     );
   }
+
+  const whatsappMessage = encodeURIComponent(` ${product.name} السلام عليكم ، مهتم بشراء `);
+
+  const whatsappLink = `https://wa.me/212601102257?text=${whatsappMessage}`;
 
   const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
 
@@ -232,29 +236,43 @@ export function ProductDetailsPage() {
 
             <p className="text-gray-600">{product.description}</p>
 
-            <div className="flex gap-4">
-              <button
+            <div className="grid sm:flex gap-4">
+              {/* <button
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
                 className="flex-1 bg-[#fb7701] text-white py-3 rounded-lg font-semibold hover:bg-[#e66901] transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
                 Add to Cart
-              </button>
+              </button> */}
+
+              {/* WhatsApp Button */}
+              <a
+                href={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sm:w-full sm:w-auto flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-lg hover:bg-[#128C7E] transition-colors text-lg font-medium mb-4"
+              >
+                <MessageCircle className="w-6 h-6" />
+                Contact via WhatsApp
+              </a>
+              <div className='grid-cols-2 grid gap-2'>
+
               <button 
                 onClick={() => setIsLiked(!isLiked)}
                 className={`p-3 border rounded-lg hover:bg-gray-50 transition-colors ${
                   isLiked ? 'text-red-500 border-red-500' : ''
                 }`}
               >
-                <Heart className={`w-5 h-5 ${isLiked ? 'fill-current' : ''}`} />
+                <Heart className={`w-5 h-5 !inline ${isLiked ? 'fill-current' : ''}`} />
               </button>
               <button 
                 onClick={handleShare}
                 className="p-3 border rounded-lg hover:bg-gray-50 transition-colors"
               >
-                <Share2 className="w-5 h-5" />
+                <Share2 className="w-5 h-5 !inline" />
               </button>
+              </div>
             </div>
 
             <div className="border-t pt-6">
