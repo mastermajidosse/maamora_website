@@ -27,7 +27,7 @@ export function FAQPage() {
     },
     {
       question: 'How do I contact customer service?',
-      answer: 'You can reach our customer service team through our contact page, by email at support@maamora.com, or by phone at 1-800-MAAMORA. We\'re available 24/7 to assist you.'
+      answer: 'You can reach our customer service team through our contact page, by email at contact@maamora.com, or by phone at 212601102257. We\'re available 24/7 to assist you.'
     }
   ];
 
