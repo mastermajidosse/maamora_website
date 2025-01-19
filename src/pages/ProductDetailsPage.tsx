@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Star, ShoppingCart, Heart, Share2, TruckIcon, ShieldCheck, RotateCcw, X, Facebook, Twitter, Linkedin, Link as LinkIcon, MessageCircle } from 'lucide-react';
+import { Star, ShoppingCart, Heart, Share2, TruckIcon, ShieldCheck, RotateCcw, X, Facebook, Twitter, Linkedin, Link as LinkIcon, MessageCircle, Award } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { calculateDiscountedPrice, formatPrice } from '../utils/product';
 import { Product } from '../types/product';
@@ -65,15 +65,15 @@ export function ProductDetailsPage() {
   // Mock additional images
   const productImages = [
     product.image_url,
-    product.image_url.replace('w=800', 'w=801'),
-    product.image_url.replace('w=800', 'w=802'),
-    product.image_url.replace('w=800', 'w=803'),
+    // product.image_url.replace('w=800', 'w=801'),
+    // product.image_url.replace('w=800', 'w=802'),
+    // product.image_url.replace('w=800', 'w=803'),
   ];
 
   const features = [
     { icon: TruckIcon, title: 'Free Delivery', description: 'For orders over 1000 dhs' },
     { icon: ShieldCheck, title: 'Genuine Product', description: '100% authentic guarantee' },
-    { icon: RotateCcw, title: 'Easy Returns', description: '30-day return policy' },
+    { icon: Award, title: 'Good Product', description: 'Product Verified' },
   ];
 
   const handleAddToCart = () => {
@@ -253,7 +253,7 @@ export function ProductDetailsPage() {
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="sm:w-full sm:w-auto flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-lg hover:bg-[#128C7E] transition-colors text-lg font-medium mb-4"
+                className="sm:w-3/4 sm:w-auto flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-lg hover:bg-[#128C7E] transition-colors text-lg font-medium mb-4"
               >
                 <MessageCircle className="w-6 h-6" />
                 Contact via WhatsApp
