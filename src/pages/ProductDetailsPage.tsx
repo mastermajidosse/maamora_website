@@ -56,7 +56,9 @@ export function ProductDetailsPage() {
 
   const whatsappMessage = encodeURIComponent(` ${product.name} السلام عليكم ، مهتم بشراء `);
 
-  const whatsappLink = `https://wa.me/212601102257?text=${whatsappMessage}`;
+  const WPnumber = product.category_id == "cdf259b8-c660-4af3-bb55-aaa4a12ee081" ? 212773630619 : 212601102257; 
+
+  const whatsappLink = `https://wa.me/${WPnumber}?text=${whatsappMessage}`;
 
   const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
 
