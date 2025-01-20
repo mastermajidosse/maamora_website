@@ -54,7 +54,7 @@ export function ProductDetailsPage() {
     );
   }
 
-  const whatsappMessage = encodeURIComponent(` ${product.name} السلام عليكم ، مهتم بشراء `);
+  const whatsappMessage = encodeURIComponent(` السلام عليكم ، مهتم بشراء ${product.name} `);
 
   const WPnumber = product.category_id == "cdf259b8-c660-4af3-bb55-aaa4a12ee081" ? 212773630619 : 212601102257; 
 
@@ -141,7 +141,7 @@ export function ProductDetailsPage() {
                 <Twitter className="w-6 h-6 text-blue-400" />
                 <span className="text-sm">Twitter</span>
               </a>
-              <a
+              {/* <a
                 href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -149,7 +149,7 @@ export function ProductDetailsPage() {
               >
                 <Linkedin className="w-6 h-6 text-blue-700" />
                 <span className="text-sm">LinkedIn</span>
-              </a>
+              </a> */}
               <button
                 onClick={handleCopyLink}
                 className="flex flex-col items-center gap-2 p-3 hover:bg-blue-50 rounded-lg transition-colors"
