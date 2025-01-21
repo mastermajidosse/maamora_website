@@ -45,7 +45,7 @@ export function FeaturedBrands() {
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold mb-8">Featured Marketplaces</h2>
-        <div className="grid grid-cols-5 gap-6">
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-6">
           {brands.map((brand) => (
             <Link
               key={brand.id}
