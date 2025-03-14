@@ -6,7 +6,7 @@ export function FeaturedBrands() {
     {
       id: 1,
       name: 'Plus212',
-      image: 'https://ibb.co/HDwQTPQK',
+      image: 'https://i.ibb.co/TBj5M05w/431154295-972224031123882-8598894935747971645-n.jpg',
       site:'https://www.instagram.com/plus212official/',
       category: 'Cloths'
     },
