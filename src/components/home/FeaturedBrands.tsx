@@ -5,10 +5,10 @@ export function FeaturedBrands() {
   const brands = [
     {
       id: 1,
-      name: 'Lampa',
-      image: 'https://lampa.ma/cdn/shop/files/IMG_20240315_173516_387.webp?v=1710525234',
-      site:'https://lampa.ma',
-      category: 'Light'
+      name: 'Plus212',
+      image: 'https://ibb.co/HDwQTPQK',
+      site:'https://www.instagram.com/plus212official/',
+      category: 'Cloths'
     },
     {
       id: 2,
